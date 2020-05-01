@@ -1,5 +1,5 @@
 server:
-  port: 8443
+  port: 7445
   compression:
     enabled: false
   ssl:
@@ -19,7 +19,7 @@ spring:
   profiles:
     active: ${VALID_OAUTH2_ENVIRONMENT:dev}
   datasource:
-    url: ${VALID_OAUTH2_DATASOURCE_URL:jdbc:mysql://localhost:3308/spring-security?useSSL=false&allowPublicKeyRetrieval=true}
+    url: ${VALID_OAUTH2_DATASOURCE_URL:jdbc:mysql://localhost:3308/valid-security?useSSL=false&allowPublicKeyRetrieval=true}
     username: ${VALID_OAUTH2_DATASOURCE_USERNAME:root}
     password: ${VALID_OAUTH2_DATASOURCE_PASSWORD:v4l1d-gu1d0-m4nt*}
     driver-class-name: com.mysql.cj.jdbc.Driver
