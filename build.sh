@@ -1,6 +1,6 @@
 PARENT_NAME=$1
 if [ -z "$PARENT_NAME" ]; then
-    APP_NAME=valid_oauth2-server
+    APP_NAME=valid_oauth2
 else
     APP_NAME="$PARENT_NAME"
 fi
@@ -14,7 +14,7 @@ fi
 
 PARENT_MYSQL_HOST=$3
 if [ -z "$PARENT_MYSQL_HOST" ]; then
-    MYSQL_HOST=valid-mysql
+    MYSQL_HOST=valid_mysql
 else
     MYSQL_HOST="$PARENT_MYSQL_HOST"
 fi
