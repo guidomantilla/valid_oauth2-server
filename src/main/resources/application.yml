@@ -1,0 +1,43 @@
+server:
+  port: 8443
+  compression:
+    enabled: false
+  ssl:
+    enabled: true
+    protocol: TLS
+    key-store: classpath:ssl.p12
+    key-store-password: Raven123qweasd+
+    key-store-type: PKCS12
+    key-alias: ssl
+spring:
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: false
+    register-shutdown-hook: true
+  application:
+    name: valid.oauth2.server
+  profiles:
+    active: ${OAUTH2_AUTH_ENVIRONMENT:dev}
+  datasource:
+    url: ${OAUTH2_AUTH_DATASOURCE_URL:jdbc:mysql://localhost:3308/spring-security?useSSL=false}
+    username: ${OAUTH2_AUTH_DATASOURCE_USERNAME:root}
+    password: ${OAUTH2_AUTH_DATASOURCE_PASSWORD:v4l1d-gu1d0-m4nt*}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: never
+    platform: mysql
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        show_sql: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+check-user-scopes: true
+
+
