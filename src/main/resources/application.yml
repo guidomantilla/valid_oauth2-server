@@ -17,11 +17,11 @@ spring:
   application:
     name: valid.oauth2.server
   profiles:
-    active: ${OAUTH2_AUTH_ENVIRONMENT:dev}
+    active: ${VALID_OAUTH2_ENVIRONMENT:dev}
   datasource:
-    url: ${OAUTH2_AUTH_DATASOURCE_URL:jdbc:mysql://localhost:3308/spring-security?useSSL=false}
-    username: ${OAUTH2_AUTH_DATASOURCE_USERNAME:root}
-    password: ${OAUTH2_AUTH_DATASOURCE_PASSWORD:v4l1d-gu1d0-m4nt*}
+    url: ${VALID_OAUTH2_DATASOURCE_URL:jdbc:mysql://localhost:3308/spring-security?useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${VALID_OAUTH2_DATASOURCE_USERNAME:root}
+    password: ${VALID_OAUTH2_DATASOURCE_PASSWORD:v4l1d-gu1d0-m4nt*}
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: never
     platform: mysql
@@ -39,5 +39,3 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 check-user-scopes: true
-
-
