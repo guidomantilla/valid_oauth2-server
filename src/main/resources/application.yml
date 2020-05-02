@@ -9,6 +9,7 @@ server:
     key-store-password: Raven123qweasd+
     key-store-type: PKCS12
     key-alias: ssl
+
 spring:
   main:
     banner-mode: off
