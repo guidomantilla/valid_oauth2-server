@@ -9,7 +9,7 @@ ENV VALID_APP_NAME='valid-oauth2' \
     VALID_OAUTH2_DATASOURCE_PASSWORD='v4l1d-gu1d0-m4nt*' \
     VALID_OAUTH2_ENVIRONMENT='dev'
 
-RUN apk --no-cache add curl && echo $VALID_OAUTH2_DATASOURCE_URL
+RUN apk --no-cache add curl
 
 VOLUME /tmp
 
