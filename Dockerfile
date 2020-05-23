@@ -5,7 +5,8 @@ ENV APP_HOME='/root/dev/app/' \
 
 WORKDIR $APP_HOME
 COPY . .
-RUN gradle build -x test --continue &&  \
+RUN gradle build -x test --continue && \
+    echo $(ls build/libs) \
     mv build/libs/$(ls build/libs) build/libs/${VALID_APP_NAME}.jar
 
 
