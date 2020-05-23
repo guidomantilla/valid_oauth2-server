@@ -1,8 +1,23 @@
-FROM openjdk:8-jdk-alpine
+FROM gradle:6.4.1-jdk8 AS builder
 
-# Set necessary environment variables needed for our running image
-ENV VALID_APP_NAME='valid-oauth2' \
-    VALID_MYSQL_HOSTNAME='valid-mysql' \
+ENV APP_HOME='/root/dev/app/' \
+    VALID_APP_NAME='valid-oauth2'
+
+WORKDIR $APP_HOME
+COPY . .
+RUN gradle build -x test --continue &&  \
+    mv build/libs/$(ls build/libs) build/libs/${VALID_APP_NAME}.jar
+
+
+FROM openjdk:8-jre-alpine
+
+ENV APP_HOME='/root/dev/app/' \
+    VALID_APP_NAME='valid-oauth2'
+
+COPY --from=builder ${APP_HOME}/build/libs/${VALID_APP_NAME}.jar .
+
+# Set necessary environment variables needed for running image
+ENV VALID_MYSQL_HOSTNAME='valid-mysql' \
     VALID_MYSQL_PORT='3306' \
     VALID_OAUTH2_DATASOURCE_URL='jdbc:mysql://${VALID_MYSQL_HOSTNAME}:${VALID_MYSQL_PORT}/valid-security?useSSL=false&allowPublicKeyRetrieval=true' \
     VALID_OAUTH2_DATASOURCE_USERNAME='root' \
@@ -13,9 +28,7 @@ RUN apk --no-cache add curl
 
 VOLUME /tmp
 
-ARG JAR_FILE=build/libs/${VALID_APP_NAME}.jar
-
-ADD ${JAR_FILE} valid-oauth2.jar
+RUN mv ${VALID_APP_NAME}.jar valid-oauth2.jar
 
 EXPOSE 8443
 
