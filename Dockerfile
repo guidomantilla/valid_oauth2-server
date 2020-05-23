@@ -28,4 +28,4 @@ RUN mv ${VALID_APP_NAME}.jar valid-oauth2.jar && apk --no-cache add curl
 VOLUME /tmp
 EXPOSE 8443
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/valid-oauth2.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/valid-oauth2.jar"]
